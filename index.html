@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#b30000" />
+  <title>Kola Marketing Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+
+  <!-- 🔓 Sliding Doors Animation -->
+  <div id="door-left" class="fixed inset-y-0 left-0 w-1/2 bg-red-800 z-50 transition-transform duration-1000"></div>
+  <div id="door-right" class="fixed inset-y-0 right-0 w-1/2 bg-black z-50 transition-transform duration-1000"></div>
+
+  <!-- 🔐 Login -->
+  <div id="login-screen">
+    <h1>Kola Dashboard Login</h1>
+    <button onclick="loginAs('staff')">👷 Staff Login</button>
+    <div>
+      <input type="password" id="manager-pin" placeholder="Manager PIN" />
+      <button onclick="loginAs('manager')">🧑‍💼 Manager Login</button>
+      <p id="pin-error" style="display: none; color: red;">Incorrect PIN</p>
+    </div>
+  </div>
+
+  <!-- 📊 Dashboard -->
+  <div id="dashboard" style="display: none;">
+    <header>
+      <h1>Kola Marketing Dashboard</h1>
+      <p class="subhead">Daily & Weekly Manager Tools</p>
+    </header>
+
+    <div id="leaderboard" class="stats-bar"></div>
+
+    <section class="task-section">
+      <h2>📘 Daily Tasks</h2>
+      <ul id="daily-tasks"></ul>
+    </section>
+
+    <section class="task-section">
+      <h2>📙 Weekly Tasks</h2>
+      <ul id="weekly-tasks"></ul>
+    </section>
+
+    <section class="task-section">
+      <h2>🎯 Lead Qualification Checklist</h2>
+      <ul id="lead-tasks"></ul>
+    </section>
+
+    <section class="ai-tab">
+      <h2>🧠 AI Coach Insights</h2>
+      <div id="ai-insights">Loading insights...</div>
+    </section>
+
+    <section class="quiz-tab">
+      <h2>📝 Staff Quiz</h2>
+      <div id="quiz-question"></div>
+      <div id="quiz-options"></div>
+      <button id="quiz-next">Start / Next</button>
+      <div id="quiz-score"></div>
+    </section>
+
+    <section class="media-tab">
+      <h2>📸 Media Uploads</h2>
+      <input type="file" id="media-input" multiple accept="image/*,video/*" />
+      <div id="media-preview"></div>
+    </section>
+
+    <section class="task-section">
+      <h2>🤖 Ask KolaBot</h2>
+      <div id="chat-box" class="chat-box">
+        <div id="chat-log"></div>
+        <input type="text" id="chat-input" placeholder="Type your question..." />
+        <button onclick="handleChat()">Ask</button>
+      </div>
+    </section>
+
+    <section class="manager-only" style="display:none;">
+      <h2>🧠 KolaVision (Manager Voice Assistant)</h2>
+      <button id="speak-insights">🔊 Speak Weekly Insights</button>
+    </section>
+
+    <section class="manager-only" style="display:none;">
+      <h2>📡 Staff Activity Feed</h2>
+      <div id="activity-feed"></div>
+    </section>
+  </div>
+
+  <!-- 🌐 Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log("✅ Service Worker registered:", reg.scope))
+        .catch(err => console.error("❌ Service Worker failed:", err));
+    }
+  </script>
+
+  <!-- 🧠 Main JS -->
+  <script defer src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
